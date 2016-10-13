@@ -20,6 +20,14 @@ game.nextTurn = function(){
   }
   return game.turn;
 };
+game.Reset = function(){
+  game.board.forEach(function(row, index, board){
+    row.forEach(function(cell, index, board){
+      cell.textContent = "";
+      game.winner = null;
+    });
+  });
+};
 game.checkWinner = function(){
   if(game.board.dom_ready !== true){
     return null;
@@ -54,7 +62,15 @@ game.checkWinner = function(){
      }
 
   if(game.winner !== null){
-    console.log(game.winner);
+    var player_winner;
+    if(game.winner === gamer1){
+      player_winner = "Jugador 1";
+    }else{
+      player_winner = "Jugador 2";
+    }
+
+    alert("Ganador: " + player_winner);
+    game.Reset();
   }
  };
 /* End Game Object Definition */
